@@ -47,12 +47,18 @@
             this.addBotToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPageTesting = new System.Windows.Forms.TabPage();
+            this.whichBotTestComboBox = new System.Windows.Forms.ComboBox();
             this.testBotGroupBox = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.currentIDTextBox = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.conversationResponseListBox = new System.Windows.Forms.ListBox();
             this.conversationSayTextBox = new System.Windows.Forms.TextBox();
-            this.whichBotTestComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPageInternalEncounters = new System.Windows.Forms.TabPage();
+            this.tabPageMacros = new System.Windows.Forms.TabPage();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newBrainsFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +98,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPageConfig);
             this.tabControl.Controls.Add(this.tabPageTesting);
-            this.tabControl.Controls.Add(this.tabPageInternalEncounters);
+            this.tabControl.Controls.Add(this.tabPageMacros);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Margin = new System.Windows.Forms.Padding(2);
@@ -259,8 +265,8 @@
             // 
             // tabPageTesting
             // 
-            this.tabPageTesting.Controls.Add(this.testBotGroupBox);
             this.tabPageTesting.Controls.Add(this.whichBotTestComboBox);
+            this.tabPageTesting.Controls.Add(this.testBotGroupBox);
             this.tabPageTesting.Controls.Add(this.label1);
             this.tabPageTesting.Location = new System.Drawing.Point(4, 22);
             this.tabPageTesting.Margin = new System.Windows.Forms.Padding(2);
@@ -272,8 +278,24 @@
             this.tabPageTesting.UseVisualStyleBackColor = true;
             this.tabPageTesting.Enter += new System.EventHandler(this.tabPageTesting_Enter);
             // 
+            // whichBotTestComboBox
+            // 
+            this.whichBotTestComboBox.FormattingEnabled = true;
+            this.whichBotTestComboBox.Location = new System.Drawing.Point(51, 3);
+            this.whichBotTestComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.whichBotTestComboBox.Name = "whichBotTestComboBox";
+            this.whichBotTestComboBox.Size = new System.Drawing.Size(414, 21);
+            this.whichBotTestComboBox.TabIndex = 1;
+            this.whichBotTestComboBox.SelectionChangeCommitted += new System.EventHandler(this.whichBotTestComboBox_SelectionChangeCommitted);
+            // 
             // testBotGroupBox
             // 
+            this.testBotGroupBox.Controls.Add(this.label4);
+            this.testBotGroupBox.Controls.Add(this.label3);
+            this.testBotGroupBox.Controls.Add(this.currentIDTextBox);
+            this.testBotGroupBox.Controls.Add(this.textBox1);
+            this.testBotGroupBox.Controls.Add(this.button1);
+            this.testBotGroupBox.Controls.Add(this.label2);
             this.testBotGroupBox.Controls.Add(this.conversationResponseListBox);
             this.testBotGroupBox.Controls.Add(this.conversationSayTextBox);
             this.testBotGroupBox.Location = new System.Drawing.Point(4, 23);
@@ -286,34 +308,78 @@
             this.testBotGroupBox.Text = "Testing \'null\'";
             this.testBotGroupBox.Visible = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(326, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Goto ID:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Current ID:";
+            // 
+            // currentIDTextBox
+            // 
+            this.currentIDTextBox.Location = new System.Drawing.Point(63, 14);
+            this.currentIDTextBox.Name = "currentIDTextBox";
+            this.currentIDTextBox.ReadOnly = true;
+            this.currentIDTextBox.Size = new System.Drawing.Size(43, 20);
+            this.currentIDTextBox.TabIndex = 5;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(375, 14);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(43, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(424, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "&Go";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 160);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Your Response Choices:";
+            // 
             // conversationResponseListBox
             // 
             this.conversationResponseListBox.FormattingEnabled = true;
-            this.conversationResponseListBox.Location = new System.Drawing.Point(5, 136);
+            this.conversationResponseListBox.Location = new System.Drawing.Point(5, 175);
             this.conversationResponseListBox.Margin = new System.Windows.Forms.Padding(2);
             this.conversationResponseListBox.Name = "conversationResponseListBox";
-            this.conversationResponseListBox.Size = new System.Drawing.Size(453, 147);
+            this.conversationResponseListBox.ScrollAlwaysVisible = true;
+            this.conversationResponseListBox.Size = new System.Drawing.Size(453, 108);
             this.conversationResponseListBox.TabIndex = 1;
             this.conversationResponseListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.conversationResponseListBox_MouseDoubleClick);
             // 
             // conversationSayTextBox
             // 
-            this.conversationSayTextBox.Location = new System.Drawing.Point(4, 17);
+            this.conversationSayTextBox.Location = new System.Drawing.Point(4, 38);
             this.conversationSayTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.conversationSayTextBox.Multiline = true;
             this.conversationSayTextBox.Name = "conversationSayTextBox";
-            this.conversationSayTextBox.Size = new System.Drawing.Size(454, 114);
+            this.conversationSayTextBox.ReadOnly = true;
+            this.conversationSayTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.conversationSayTextBox.Size = new System.Drawing.Size(454, 120);
             this.conversationSayTextBox.TabIndex = 0;
-            // 
-            // whichBotTestComboBox
-            // 
-            this.whichBotTestComboBox.FormattingEnabled = true;
-            this.whichBotTestComboBox.Location = new System.Drawing.Point(51, 3);
-            this.whichBotTestComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.whichBotTestComboBox.Name = "whichBotTestComboBox";
-            this.whichBotTestComboBox.Size = new System.Drawing.Size(414, 21);
-            this.whichBotTestComboBox.TabIndex = 1;
-            this.whichBotTestComboBox.SelectionChangeCommitted += new System.EventHandler(this.whichBotTestComboBox_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -325,16 +391,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Test Bot:";
             // 
-            // tabPageInternalEncounters
+            // tabPageMacros
             // 
-            this.tabPageInternalEncounters.Location = new System.Drawing.Point(4, 22);
-            this.tabPageInternalEncounters.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPageInternalEncounters.Name = "tabPageInternalEncounters";
-            this.tabPageInternalEncounters.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPageInternalEncounters.Size = new System.Drawing.Size(468, 314);
-            this.tabPageInternalEncounters.TabIndex = 2;
-            this.tabPageInternalEncounters.Text = "Fake Encounters";
-            this.tabPageInternalEncounters.UseVisualStyleBackColor = true;
+            this.tabPageMacros.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMacros.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPageMacros.Name = "tabPageMacros";
+            this.tabPageMacros.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPageMacros.Size = new System.Drawing.Size(468, 314);
+            this.tabPageMacros.TabIndex = 2;
+            this.tabPageMacros.Text = "Macros";
+            this.tabPageMacros.UseVisualStyleBackColor = true;
             // 
             // menuStrip
             // 
@@ -489,33 +555,33 @@
             // 
             this.helpToolStripMenuItem1.Image = global::Conversational_Config.Properties.Resources.help;
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
             this.helpToolStripMenuItem1.Text = "&Help";
             // 
             // helpTopicsToolStripMenuItem
             // 
             this.helpTopicsToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.table_link1;
             this.helpTopicsToolStripMenuItem.Name = "helpTopicsToolStripMenuItem";
-            this.helpTopicsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpTopicsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.helpTopicsToolStripMenuItem.Text = "Help &Topics";
             // 
             // helpSearchToolStripMenuItem
             // 
             this.helpSearchToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.sport_8ball;
             this.helpSearchToolStripMenuItem.Name = "helpSearchToolStripMenuItem";
-            this.helpSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpSearchToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.helpSearchToolStripMenuItem.Text = "Help &Search";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(128, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.star;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -592,7 +658,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem quitConversationalConfigToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabPageInternalEncounters;
+        private System.Windows.Forms.TabPage tabPageMacros;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem cleanBrainToolStripMenuItem;
         private System.Windows.Forms.Label ByFoxDillerLabel;
@@ -628,6 +694,12 @@
         private System.Windows.Forms.TextBox conversationSayTextBox;
         private System.Windows.Forms.ComboBox whichBotTestComboBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox currentIDTextBox;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

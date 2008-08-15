@@ -42,8 +42,13 @@ namespace ConversationalAPI
 
         public override string ToString()
         {
+#if DEBUG
+            return _response + " -> " + _toWhatConversation.ToString();
+#else
             return _response;
+#endif
         }
+
 
         public int To
         {

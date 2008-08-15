@@ -113,7 +113,56 @@ namespace ConversationalAPI
         /// </summary>
         public static void Destroy()
         {
+            _instance._SQL.Close();
+            _instance._SQL.Dispose();
+            _instance._SQL = null;
+            _instance._file = null;
+
             _instance = null;
+
+            GC.WaitForPendingFinalizers();
+        }
+
+        /// <summary>
+        /// Create a new brain file.
+        /// </summary>
+        /// <param name="filename">The filename to create</param>
+        /// <returns>Successful or not. True or false.</returns>
+        public static bool CreateNewBrainFile(string filename)
+        {
+            try
+            {
+                File.Create(filename);
+
+                SQLiteConnection SQL = new SQLiteConnection(@"Data Source=" + filename);
+
+                SQL.Open();
+
+                SQLiteCommand createBotsTable = SQL.CreateCommand();
+                createBotsTable.CommandText = "CREATE TABLE bots (bot_id INTEGER PRIMARY KEY, bot_name TEXT)";
+                createBotsTable.ExecuteNonQuery();
+                createBotsTable.Dispose();
+                createBotsTable = null;
+
+                SQLiteCommand createMacrosTable = SQL.CreateCommand();
+                createMacrosTable.CommandText = "CREATE TABLE macros (macro_id INTEGER PRIMARY KEY, macro_search TEXT, macro_replace TEXT)";
+                createMacrosTable.ExecuteNonQuery();
+                createMacrosTable.Dispose();
+                createMacrosTable = null;
+
+                SQL.Close();
+                SQL.Dispose();
+
+                return true;
+            }
+            catch (SQLiteException)
+            {
+                return false;
+            }
+            catch (IOException)
+            {
+                return false;
+            }
         }
         #endregion Singleton
 

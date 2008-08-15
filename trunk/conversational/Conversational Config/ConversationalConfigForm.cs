@@ -38,9 +38,39 @@ namespace Conversational_Config
 {
     public partial class ConversationalConfigForm : Form
     {
+        private bool isFileLoaded;
+
         public ConversationalConfigForm()
         {
             InitializeComponent();
+        }
+        
+        #region Main Menu Event Handlers
+        private void newBrainsFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isFileLoaded)
+            {
+                CloseData();
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Conversational Brains DB (*.db3)|*.db3";
+            sfd.FilterIndex = 1;
+
+            DialogResult sfdResult = sfd.ShowDialog();
+
+            if (sfdResult == DialogResult.OK)
+            {
+                if (Conversational.CreateNewBrainFile(sfd.FileName))
+                {
+                    Conversational.Initialize(new FileInfo(sfd.FileName));
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Unable to create new brain file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,13 +98,9 @@ namespace Conversational_Config
             }
         }
 
-        private void LoadData()
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ReloadBotList();
-
-            Text = Conversational.Instance.DatabaseFile;
-
-            doInterfaceEnables(true);
+            CloseData();
         }
 
         private void quitConversationalConfigToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,11 +108,36 @@ namespace Conversational_Config
             this.Close();
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Made by:\nFox Diller\n\nVersion 0.1\nMagrathean Technologies Internal Product\nFor Internal Use\n\nReleased Under GPL 2", "About Conversational Config", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
+        #endregion
+
+        #region File Methods
+        private void LoadData()
+        {
+            if (isFileLoaded)
+            {
+                CloseData();
+            }
+
+            isFileLoaded = true;
+
+            ReloadBotList();
+
+            Text = Conversational.Instance.DatabaseFile;
+
+            doInterfaceEnables(true);
+        }
+
+        private void CloseData()
         {
             if (MessageBox.Show("Are you sure you wish to close these brains?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Conversational.Destroy();
+
+                isFileLoaded = false;
 
                 Text = "Conversational Config 1.0";
 
@@ -114,11 +165,42 @@ namespace Conversational_Config
             }
         }
 
-        private void newBrainsFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadBotList()
         {
-            MessageBox.Show("Coming soon.");
+            List<string> bots = Conversational.Instance.ListAllBots();
+
+            listBoxOfBots.Items.Clear();
+
+            if (bots.Count != 0)
+            {
+                foreach (string bot in bots)
+                {
+                    listBoxOfBots.Items.Add(bot);
+                }
+            }
         }
 
+        private void LoadConversationalGrid()
+        {
+            conversationDataGrid.Visible = false;
+
+            Dictionary<int, string> conversations = Conversational.Instance.GetBotConversations(listBoxOfBots.Items[listBoxOfBots.SelectedIndex].ToString());
+
+            conversationDataGrid.Rows.Clear();
+
+            if (conversations.Count != 0)
+            {
+                foreach (int key in conversations.Keys)
+                {
+                    conversationDataGrid.Rows.Add(key, conversations[key]);
+                }
+            }
+
+            conversationDataGrid.Visible = true;
+        }
+        #endregion
+
+        #region ListBox Bots Event Handling Methods
         private void addBotToolStripTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -139,39 +221,6 @@ namespace Conversational_Config
                         addNewBotTextBox.Text = string.Empty;
                         botsContextMenuStrip.Hide();
                     }
-                }
-            }
-        }
-
-        private void ReloadBotList()
-        {
-            List<string> bots = Conversational.Instance.ListAllBots();
-
-            listBoxOfBots.Items.Clear();
-
-            if (bots.Count != 0)
-            {
-                foreach (string bot in bots)
-                {
-                    listBoxOfBots.Items.Add(bot);
-                }
-            }            
-        }
-
-        private void listBoxOfBots_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                int indexOver = listBoxOfBots.IndexFromPoint(e.X, e.Y);
-
-                if (indexOver >= 0 && indexOver < listBoxOfBots.Items.Count)
-                {
-                    listBoxOfBots.SelectedIndex = indexOver;
-                    botsContextMenuStrip.Items["deleteToolStripMenuItem"].Enabled = true;
-                }
-                else
-                {
-                    botsContextMenuStrip.Items["deleteToolStripMenuItem"].Enabled = false;
                 }
             }
         }
@@ -203,52 +252,26 @@ namespace Conversational_Config
             }
         }
 
-        private void LoadConversationalGrid()
+        private void listBoxOfBots_MouseDown(object sender, MouseEventArgs e)
         {
-            conversationDataGrid.Visible = false;
-
-            Dictionary<int, string> conversations = Conversational.Instance.GetBotConversations(listBoxOfBots.Items[listBoxOfBots.SelectedIndex].ToString());
-
-            conversationDataGrid.Rows.Clear();
-
-            if (conversations.Count != 0)
+            if (e.Button == MouseButtons.Right)
             {
-                foreach (int key in conversations.Keys)
+                int indexOver = listBoxOfBots.IndexFromPoint(e.X, e.Y);
+
+                if (indexOver >= 0 && indexOver < listBoxOfBots.Items.Count)
                 {
-                    conversationDataGrid.Rows.Add(key, conversations[key]);
+                    listBoxOfBots.SelectedIndex = indexOver;
+                    botsContextMenuStrip.Items["deleteToolStripMenuItem"].Enabled = true;
+                }
+                else
+                {
+                    botsContextMenuStrip.Items["deleteToolStripMenuItem"].Enabled = false;
                 }
             }
-
-            conversationDataGrid.Visible = true;
         }
+        #endregion
 
-        private void testBotsConversationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Coming Soon");
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Made by:\nFox Diller\n\nVersion 0.1\nMagrathean Technologies Internal Product\nFor Internal Use\n\nReleased Under GPL 2", "About Conversational Config", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-        }
-
-        private void aToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddNewConversationWindow conversationWindow = new AddNewConversationWindow(listBoxOfBots.Items[listBoxOfBots.SelectedIndex].ToString());
-            conversationWindow.ShowDialog();
-            conversationWindow.Dispose();
-
-            LoadConversationalGrid();
-        }
-
-        private void ConversationalConfigForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Are you sure you want to quit Conversational Config?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-        }
-
+        #region Conversation DataGrid Event Handlers
         private void conversationDataGrid_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -286,7 +309,7 @@ namespace Conversational_Config
                 int conversationID = int.Parse(row.Cells[0].Value.ToString());
                 string say = row.Cells[1].Value.ToString();
 
-                LoadEditConversationWindow(botName, conversationID, say);              
+                LoadEditConversationWindow(botName, conversationID, say);
             }
         }
 
@@ -332,6 +355,30 @@ namespace Conversational_Config
             }
         }
 
+        private void aToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNewConversationWindow conversationWindow = new AddNewConversationWindow(listBoxOfBots.Items[listBoxOfBots.SelectedIndex].ToString());
+            conversationWindow.ShowDialog();
+            conversationWindow.Dispose();
+
+            LoadConversationalGrid();
+        }
+
+        private void testBotsConversationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(tabPageTesting);
+
+            string whichBot = listBoxOfBots.Items[listBoxOfBots.SelectedIndex].ToString();
+
+            int index = whichBotTestComboBox.Items.IndexOf(whichBot);
+
+            whichBotTestComboBox.SelectedIndex = index;
+
+            LoadConversation(whichBot);
+        }
+        #endregion
+
+        #region Testing Tab Methods
         private void tabPageTesting_Enter(object sender, EventArgs e)
         {
             testBotGroupBox.Visible = false;
@@ -354,6 +401,11 @@ namespace Conversational_Config
 
             string selectedBot = (string)comboBox.SelectedItem;
 
+            LoadConversation(selectedBot);
+        }
+
+        private void LoadConversation(string selectedBot)
+        {
             ConversationalItem ci = Conversational.Instance.GetBotFirstConversationItem(selectedBot);
 
             if (ci != null)
@@ -383,6 +435,8 @@ namespace Conversational_Config
 
 
             testBotGroupBox.Text = "Testing '" + selectedBot + "'";
+
+            currentIDTextBox.Text = ci.ConversationID.ToString();
 
             testBotGroupBox.Visible = true;
         }
@@ -418,6 +472,17 @@ namespace Conversational_Config
                 whichBotTestComboBox.Text = string.Empty;
 
                 MessageBox.Show("You have completed your conversation with " + botName, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                tabControl.SelectTab(tabPageConfig);
+            }
+        }
+        #endregion
+
+        private void ConversationalConfigForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to quit Conversational Config?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
     }

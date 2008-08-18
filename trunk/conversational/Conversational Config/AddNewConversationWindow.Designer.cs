@@ -39,16 +39,19 @@
             // newConversationSayTextBox
             // 
             this.newConversationSayTextBox.Location = new System.Drawing.Point(0, 0);
+            this.newConversationSayTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.newConversationSayTextBox.Multiline = true;
             this.newConversationSayTextBox.Name = "newConversationSayTextBox";
-            this.newConversationSayTextBox.Size = new System.Drawing.Size(633, 182);
+            this.newConversationSayTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.newConversationSayTextBox.Size = new System.Drawing.Size(476, 345);
             this.newConversationSayTextBox.TabIndex = 0;
             // 
             // addNewConversationCancelButton
             // 
-            this.addNewConversationCancelButton.Location = new System.Drawing.Point(545, 189);
+            this.addNewConversationCancelButton.Location = new System.Drawing.Point(409, 350);
+            this.addNewConversationCancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addNewConversationCancelButton.Name = "addNewConversationCancelButton";
-            this.addNewConversationCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.addNewConversationCancelButton.Size = new System.Drawing.Size(56, 19);
             this.addNewConversationCancelButton.TabIndex = 1;
             this.addNewConversationCancelButton.Text = "&Cancel";
             this.addNewConversationCancelButton.UseVisualStyleBackColor = true;
@@ -56,9 +59,10 @@
             // 
             // addNewConversationSaveButton
             // 
-            this.addNewConversationSaveButton.Location = new System.Drawing.Point(464, 189);
+            this.addNewConversationSaveButton.Location = new System.Drawing.Point(348, 350);
+            this.addNewConversationSaveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addNewConversationSaveButton.Name = "addNewConversationSaveButton";
-            this.addNewConversationSaveButton.Size = new System.Drawing.Size(75, 23);
+            this.addNewConversationSaveButton.Size = new System.Drawing.Size(56, 19);
             this.addNewConversationSaveButton.TabIndex = 2;
             this.addNewConversationSaveButton.Text = "&Save";
             this.addNewConversationSaveButton.UseVisualStyleBackColor = true;
@@ -66,9 +70,10 @@
             // 
             // criButton
             // 
-            this.criButton.Location = new System.Drawing.Point(13, 188);
+            this.criButton.Location = new System.Drawing.Point(10, 349);
+            this.criButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.criButton.Name = "criButton";
-            this.criButton.Size = new System.Drawing.Size(215, 23);
+            this.criButton.Size = new System.Drawing.Size(161, 19);
             this.criButton.TabIndex = 3;
             this.criButton.Text = "Conversational Response Items";
             this.criButton.UseVisualStyleBackColor = true;
@@ -77,26 +82,28 @@
             // criTotalLabel
             // 
             this.criTotalLabel.AutoSize = true;
-            this.criTotalLabel.Location = new System.Drawing.Point(234, 192);
+            this.criTotalLabel.Location = new System.Drawing.Point(176, 352);
+            this.criTotalLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.criTotalLabel.Name = "criTotalLabel";
-            this.criTotalLabel.Size = new System.Drawing.Size(44, 17);
+            this.criTotalLabel.Size = new System.Drawing.Size(34, 13);
             this.criTotalLabel.TabIndex = 4;
             this.criTotalLabel.Text = "Total:";
             // 
             // criTotal
             // 
             this.criTotal.AutoSize = true;
-            this.criTotal.Location = new System.Drawing.Point(275, 192);
+            this.criTotal.Location = new System.Drawing.Point(206, 352);
+            this.criTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.criTotal.Name = "criTotal";
-            this.criTotal.Size = new System.Drawing.Size(16, 17);
+            this.criTotal.Size = new System.Drawing.Size(13, 13);
             this.criTotal.TabIndex = 5;
             this.criTotal.Text = "0";
             // 
             // AddNewConversationWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 224);
+            this.ClientSize = new System.Drawing.Size(474, 372);
             this.Controls.Add(this.criTotal);
             this.Controls.Add(this.criTotalLabel);
             this.Controls.Add(this.criButton);
@@ -104,6 +111,7 @@
             this.Controls.Add(this.addNewConversationCancelButton);
             this.Controls.Add(this.newConversationSayTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddNewConversationWindow";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

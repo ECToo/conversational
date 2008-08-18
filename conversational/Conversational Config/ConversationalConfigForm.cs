@@ -495,13 +495,55 @@ namespace Conversational_Config
                 tabControl.SelectTab(tabPageConfig);
             }
         }
+
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length != 0)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string bot = (string)whichBotTestComboBox.SelectedItem;
+
+            ConversationalItem ci = null;
+
+            try
+            {
+                ci = Conversational.Instance.GetBotConversationByID(bot, int.Parse(textBox1.Text));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Please enter only numbers.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (ci != null)
+            {
+                ChangeConversation(ci);
+            }
+            else
+            {
+                MessageBox.Show("There is no conversation at ID: " + textBox1.Text + "\nPlease check your logic", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
         private void ConversationalConfigForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to quit Conversational Config?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (isFileLoaded)
             {
-                e.Cancel = true;
+                if (MessageBox.Show("Are you sure you want to quit Conversational Config?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

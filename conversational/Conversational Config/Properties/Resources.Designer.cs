@@ -123,6 +123,13 @@ namespace Conversational_Config.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap house_link {
+            get {
+                object obj = ResourceManager.GetObject("house_link", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap lightbulb_off {
             get {
                 object obj = ResourceManager.GetObject("lightbulb_off", resourceCulture);

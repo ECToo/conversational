@@ -93,7 +93,7 @@ namespace ConversationalAPI
         {
             try
             {
-                File.Create(filename);
+                SQLiteConnection.CreateFile(filename);
 
                 SQLiteConnection SQL = new SQLiteConnection(@"Data Source=" + filename);
 

@@ -29,17 +29,30 @@ using System.Text;
 
 namespace ConversationalAPI
 {
+    /// <summary>
+    /// A class to define a single reponse to a multi choice response conversation
+    /// </summary>
     public class ConversationalResponseItem
     {
         private int _toWhatConversation;
         private string _response;
 
+        /// <summary>
+        /// ConversationalResponseItem Constructor
+        /// </summary>
+        /// <param name="to">The ConversationalItem ID of the response choice</param>
+        /// <param name="response">The response to display to the user</param>
         public ConversationalResponseItem(int to, string response)
         {
             this._toWhatConversation = to;
             this._response = response;
         }
 
+        /// <summary>
+        /// Overrode from Object; during debug the string will be displayed with the ID that would lead
+        /// from the selection of that response
+        /// </summary>
+        /// <returns>The string response</returns>
         public override string ToString()
         {
 #if DEBUG
@@ -49,13 +62,18 @@ namespace ConversationalAPI
 #endif
         }
 
-
+        /// <summary>
+        /// The id a ConversationalItem if this choice is selected
+        /// </summary>
         public int To
         {
             get { return _toWhatConversation; }
             set { _toWhatConversation = value; }
         }
 
+        /// <summary>
+        /// The string response of this ConversationResponseItem
+        /// </summary>
         public string Response
         {
             get { return _response; }

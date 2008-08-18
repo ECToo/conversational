@@ -32,45 +32,6 @@ using System.IO;
 namespace ConversationalAPI
 {
     /// <summary>
-    /// This contains a conversation item itself...
-    /// </summary>
-    public class ConversationalItem
-    {
-        private string _botname;
-        private int _conversationID;
-        private string _say;
-        private ConversationalResponseItems _cri;
-
-        public ConversationalItem(string botname, int conversationID, string say, ConversationalResponseItems cri)
-        {
-            this._botname = botname;
-            this._conversationID = conversationID;
-            this._say = say;
-            this._cri = cri;
-        }
-
-        public string BotName
-        {
-            get { return _botname; }
-        }
-
-        public int ConversationID
-        {
-            get { return _conversationID; }
-        }
-
-        public string Say
-        {
-            get { return _say; }
-        }
-
-        public ConversationalResponseItems ConversationalResponseItems
-        {
-            get { return _cri; }
-        }
-    }
-
-    /// <summary>
     /// This is a multiple choice response system for the Game's NPC's
     /// Written by Fox
     /// </summary>
@@ -204,6 +165,11 @@ namespace ConversationalAPI
         }
 
         #region Access Function Code
+        /// <summary>
+        /// Get the first ever ConversationalItem for the specified bot
+        /// </summary>
+        /// <param name="bot_name">The bot to retrieve the first ConversationalItem from</param>
+        /// <returns>The ConversationalItem or null</returns>
         public ConversationalItem GetBotFirstConversationItem(string bot_name)
         {
             SQLiteCommand command = _SQL.CreateCommand();
@@ -222,6 +188,12 @@ namespace ConversationalAPI
             }
         }
 
+        /// <summary>
+        /// Get a ConversationalItem from a certain point in the conversation by specifing an ID
+        /// </summary>
+        /// <param name="bot_name">The bot to retrieve the specific ConversationalItem from</param>
+        /// <param name="id">The ID of the conversational item needed</param>
+        /// <returns>The ConversationalItme or null</returns>
         public ConversationalItem GetBotConversationByID(string bot_name, int id)
         {
             SQLiteCommand command = _SQL.CreateCommand();
@@ -384,7 +356,9 @@ namespace ConversationalAPI
         }
         #endregion
 
-        // Fleids
+        /// <summary>
+        /// The full path to the loaded brains.
+        /// </summary>
         public string DatabaseFile
         {
             get 
@@ -393,5 +367,63 @@ namespace ConversationalAPI
             }
         }
 
+    }
+
+    /// <summary>
+    /// This contains a conversation item itself...
+    /// </summary>
+    public class ConversationalItem
+    {
+        private string _botname;
+        private int _conversationID;
+        private string _say;
+        private ConversationalResponseItems _cri;
+
+        /// <summary>
+        /// Create a new ConversationalItem
+        /// </summary>
+        /// <param name="botname">The botname for the brains</param>
+        /// <param name="conversationID">The Conversation_ID for this conversation</param>
+        /// <param name="say">What the bot says to the user</param>
+        /// <param name="cri">The responses alloted to the user to respond</param>
+        public ConversationalItem(string botname, int conversationID, string say, ConversationalResponseItems cri)
+        {
+            this._botname = botname;
+            this._conversationID = conversationID;
+            this._say = say;
+            this._cri = cri;
+        }
+
+        /// <summary>
+        /// The name of the bot that this ConversationalItem is linked to
+        /// </summary>
+        public string BotName
+        {
+            get { return _botname; }
+        }
+
+        /// <summary>
+        /// The ID of the current conversation this ConversationalItem holds
+        /// </summary>
+        public int ConversationID
+        {
+            get { return _conversationID; }
+        }
+
+        /// <summary>
+        /// What the bot will say during this conversation
+        /// </summary>
+        public string Say
+        {
+            get { return _say; }
+        }
+
+        /// <summary>
+        /// The response(s) for the user to be given.
+        /// </summary>
+        public ConversationalResponseItems ConversationalResponseItems
+        {
+            get { return _cri; }
+        }
     }
 }

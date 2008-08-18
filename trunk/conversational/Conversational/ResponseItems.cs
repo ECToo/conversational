@@ -46,7 +46,6 @@ namespace ConversationalAPI
         /// </summary>
         /// <param name="responseAction">The conversation_id to move to after this selection.</param>
         /// <param name="responseText">The text choice to display to the user.</param>
-        /// <returns></returns>
         public void AddResponse(int responseAction, string responseText)
         {
             _responseItems.Add(new ConversationalResponseItem(responseAction, responseText));

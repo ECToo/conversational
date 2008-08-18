@@ -59,10 +59,9 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpTopicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ByFoxDillerLabel = new System.Windows.Forms.Label();
             this.ConversationConfigLabel = new System.Windows.Forms.Label();
             this.tabPageTesting = new System.Windows.Forms.TabPage();
@@ -276,6 +275,7 @@
             // 
             // cutToolStripMenuItem
             // 
+            this.cutToolStripMenuItem.Enabled = false;
             this.cutToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.cut;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
@@ -283,6 +283,7 @@
             // 
             // copyToolStripMenuItem
             // 
+            this.copyToolStripMenuItem.Enabled = false;
             this.copyToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.table_multiple1;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
@@ -290,6 +291,7 @@
             // 
             // pasteToolStripMenuItem
             // 
+            this.pasteToolStripMenuItem.Enabled = false;
             this.pasteToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.paste_plain;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
@@ -297,6 +299,7 @@
             // 
             // deleteToolStripMenuItem1
             // 
+            this.deleteToolStripMenuItem1.Enabled = false;
             this.deleteToolStripMenuItem1.Image = global::Conversational_Config.Properties.Resources.cross;
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
             this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(111, 22);
@@ -309,6 +312,7 @@
             // 
             // optionsToolStripMenuItem
             // 
+            this.optionsToolStripMenuItem.Enabled = false;
             this.optionsToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.cog;
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
@@ -318,8 +322,7 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.helpToolStripMenuItem1,
-            this.helpTopicsToolStripMenuItem,
-            this.helpSearchToolStripMenuItem,
+            this.projectHomeToolStripMenuItem,
             this.toolStripSeparator6,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -330,35 +333,30 @@
             // 
             this.helpToolStripMenuItem1.Image = global::Conversational_Config.Properties.Resources.help;
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem1.Text = "&Help";
-            // 
-            // helpTopicsToolStripMenuItem
-            // 
-            this.helpTopicsToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.table_link1;
-            this.helpTopicsToolStripMenuItem.Name = "helpTopicsToolStripMenuItem";
-            this.helpTopicsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.helpTopicsToolStripMenuItem.Text = "Help &Topics";
-            // 
-            // helpSearchToolStripMenuItem
-            // 
-            this.helpSearchToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.sport_8ball;
-            this.helpSearchToolStripMenuItem.Name = "helpSearchToolStripMenuItem";
-            this.helpSearchToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.helpSearchToolStripMenuItem.Text = "Help &Search";
+            this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(128, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.star;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // projectHomeToolStripMenuItem
+            // 
+            this.projectHomeToolStripMenuItem.Image = global::Conversational_Config.Properties.Resources.house_link;
+            this.projectHomeToolStripMenuItem.Name = "projectHomeToolStripMenuItem";
+            this.projectHomeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.projectHomeToolStripMenuItem.Text = "&Project Home";
+            this.projectHomeToolStripMenuItem.Click += new System.EventHandler(this.projectHomeToolStripMenuItem_Click);
             // 
             // ByFoxDillerLabel
             // 
@@ -668,8 +666,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem helpTopicsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpSearchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.TabPage tabPageTesting;
         private System.Windows.Forms.ComboBox whichBotTestComboBox;
@@ -689,6 +685,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn coversation_say;
         private System.Windows.Forms.ListBox listBoxOfBots;
         private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.ToolStripMenuItem projectHomeToolStripMenuItem;
     }
 }
 

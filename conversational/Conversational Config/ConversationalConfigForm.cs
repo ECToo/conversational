@@ -107,7 +107,7 @@ namespace Conversational_Config
         {
             if (MessageBox.Show("Cleaning a brain will clean any formatting errors with the database.\n\nThis is not recomended to use outside of Magrathean's Projects.\n\nAre you sure you wish to clean brains?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-
+                MessageBox.Show("Could not find server.");
             }
         }
 
@@ -119,6 +119,17 @@ namespace Conversational_Config
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Made by:\nFox Diller\n\nVersion 1.0\nMagrathean Technologies Internal Product\nFor Internal Use\n\nReleased Under GPL 2", "About Conversational Config", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
+
+
+        private void projectHomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://code.google.com/p/conversational/");
+        }
+
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://code.google.com/p/conversational/w/list");
         }
         #endregion
 

@@ -103,6 +103,14 @@ namespace Conversational_Config
             CloseData();
         }
 
+        private void cleanBrainToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Cleaning a brain will clean any formatting errors with the database.\n\nThis is not recomended to use outside of Magrathean's Projects.\n\nAre you sure you wish to clean brains?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+
+            }
+        }
+
         private void quitConversationalConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -110,7 +118,7 @@ namespace Conversational_Config
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Made by:\nFox Diller\n\nVersion 0.1\nMagrathean Technologies Internal Product\nFor Internal Use\n\nReleased Under GPL 2", "About Conversational Config", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            MessageBox.Show("Made by:\nFox Diller\n\nVersion 1.0\nMagrathean Technologies Internal Product\nFor Internal Use\n\nReleased Under GPL 2", "About Conversational Config", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
         #endregion
 

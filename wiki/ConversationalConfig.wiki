@@ -1,13 +1,12 @@
-#summary One-sentence summary of this page.
+#summary How to edit the conversation file via the included GUI
 
 = Introduction =
 
-Add your content here.
+The gui has been created to allow users of the [NeoAxis http://neoaxisgroup.com/] engine to easily create conversations for their game's NPCs.
 
+= Instructions =
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+[http://static.magrathean.ca/images/conversational/config1.jpg]
+[http://static.magrathean.ca/images/conversational/config2.jpg]
+[http://static.magrathean.ca/images/conversational/config3.jpg]
+[http://static.magrathean.ca/images/conversational/config4.jpg]
